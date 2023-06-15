@@ -54,6 +54,7 @@ type HandlerOpts = {
     localAddress?: string;
     ipFamily?: number;
     dnsLookup?: typeof dns['lookup'];
+    customTag?: unknown;
 };
 
 export type PrepareRequestFunctionOpts = {
@@ -75,6 +76,7 @@ export type PrepareRequestFunctionResult = {
     localAddress?: string;
     ipFamily?: number;
     dnsLookup?: typeof dns['lookup'];
+    customTag?: unknown;
 };
 
 type Promisable<T> = T | Promise<T>;
@@ -204,6 +206,11 @@ export class Server extends EventEmitter {
             });
 
             this.connections.delete(unique);
+        });
+        // We have to manually destroy the socket if it timeouts.
+        // This will prevent connections from leaking and close them properly.
+        socket.on('timeout', () => {
+            socket.destroy();
         });
     }
 
@@ -423,6 +430,7 @@ export class Server extends EventEmitter {
         handlerOpts.ipFamily = funcResult.ipFamily;
         handlerOpts.dnsLookup = funcResult.dnsLookup;
         handlerOpts.customConnectServer = funcResult.customConnectServer;
+        handlerOpts.customTag = funcResult.customTag;
 
         // If not authenticated, request client to authenticate
         if (funcResult.requestAuthentication) {

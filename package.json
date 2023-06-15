@@ -1,6 +1,6 @@
 {
   "name": "proxy-chain",
-  "version": "2.2.0",
+  "version": "2.3.0",
   "description": "Node.js implementation of a proxy server (think Squid) with support for SSL, authentication, upstream proxy chaining, and protocol tunneling.",
   "main": "dist/index.js",
   "keywords": [
@@ -62,11 +62,11 @@
     "isparta": "^4.1.1",
     "mocha": "^10.0.0",
     "nyc": "^15.1.0",
+    "puppeteer": "^19.6.3",
     "portastic": "^1.0.1",
     "proxy": "^1.0.2",
-    "puppeteer": "^16.0.0",
     "request": "^2.88.2",
-    "rimraf": "^3.0.2",
+    "rimraf": "^4.1.2",
     "sinon": "^13.0.2",
     "sinon-stub-promise": "^4.0.0",
     "through": "^2.3.8",
