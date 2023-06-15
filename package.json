@@ -31,6 +31,7 @@
     "dist"
   ],
   "scripts": {
+    "prepare": "npm run build",
     "build:watch": "tsc -w",
     "build": "tsc",
     "clean": "rimraf dist",
